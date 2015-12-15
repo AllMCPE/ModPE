@@ -1,4 +1,4 @@
-//Made by Arceus_Matt © Copyright 2015.
+//Made by Arceus_Matt Copyright © 2015.
 
 var ctx = com.mojang.minecraftpe.MainActivity.currentMainActivity.get();
 var Button = android.widget.Button;
@@ -25,7 +25,7 @@ var exitUI;
 var menuLayout;
 var addView;
  
-var version = "0.13.x";
+var version = "0.13.1 ";
 var NAME = "Alpha Hack";
 var DEVELOPERS = "Arceus_Matt";
  
@@ -166,6 +166,7 @@ var layout;
 //ModPE script variables
 
 //undefined fix:
+
 var thisdaych = true;
 var thisday;
 
@@ -173,6 +174,7 @@ var speededch = true;
 var speeded;
 
 //auto update variables:
+
 var checkForUpdate=false;
 var updateWindow=false; 
 var newUpdate;
@@ -182,7 +184,7 @@ function dip2px(dips){
     return Math.ceil(dips * ctx.getResources().getDisplayMetrics().density);
 }
 
- function checkVersion() {
+function checkVersion() {
     var r  = new java.lang.Runnable() {
         run: function() {
             try {
@@ -199,8 +201,8 @@ function dip2px(dips){
                 while((byteCount = script.read(typeb)) != -1) { 
                     checkedVersion = new java.lang.String(typeb, 0, byteCount);               
                 }
-				newUpdate = checkedVersion;
-				if(version+"\n" != checkedVersion) {
+                newUpdate = checkedVersion;
+                if(version+"\n" != checkedVersion) {
                     clientMessage("§9[Alpha] §fNew version! " + newUpdate);
                     updateWindow=true;
                 }
@@ -209,12 +211,12 @@ function dip2px(dips){
                 }
             }
             catch(err) {
-                clientMessage("§[Alpha] Update check failed ");
+                clientMessage("§9[Alpha] Update check failed ");
                 if(err=="JavaException: java.net.UnknownHostException: raw.githubusercontent.com") {
                                 clientMessage("§9[Alpha] No internet connection.");
                             }
                             else {
-                                clientMessage("§9Error: \n" + err);
+                                clientMessage("§9[Alpha]   Error: \n" + err);
                             } 
             }
         }
@@ -226,7 +228,7 @@ function updateVersion() {
     try {
         var upd = new android.app.AlertDialog.Builder(ctx);
         upd.setTitle("New version available!");
-        upd.setMessage("An update to Alpha Hack was found!\nWould you like to update it now?\nCurrent version: " + version + "\nNew version: " + newUpdate +" \n\nTo update later click </>Hack --> Extra --> Check for Updates." );
+        upd.setMessage("An update to Alpha hack was found!\nWould you like to update it now?\nCurrent version: " + version + "\nNew version: " + newUpdate);
         upd.setNegativeButton("Later", new android.content.DialogInterface.OnClickListener() {
             onClick: function(par1) {
             dialog.dismiss(); 
@@ -255,12 +257,12 @@ function updateVersion() {
                             update.write(updateMod);
                             update.flush();
                             update.close();
-                            
+                             
                             try {
                                 net.zhuoweizhang.mcpelauncher.ScriptManager.setEnabled(modpeFile, false);
                                 net.zhuoweizhang.mcpelauncher.ScriptManager.setEnabled(modpeFile, true);
-								clientMessage("§3[Alpha] Downloaded and enabled!");
-								  
+                                clientMessage("§3[Alpha] Downloaded and enabled!");
+                                   
                             }
                             catch(err) {
                                 clientMessage("§9[Alpha] Error: \n" + err);
@@ -282,11 +284,40 @@ function updateVersion() {
         clientMessage("§9[Alpha] Error: \n" + err);
     }
 }
+  
+ function modTick(){
+ if(checkForUpdate==false) {
+        print("Checking for updates");
+        ctx.runOnUiThread(new java.lang.Runnable({
+            run: function() {
+                try {
+                    checkVersion();
+                }
+                catch(err) {
+                    clientMessage("§9[Alpha] Error: \n"+err);
+                }
+            }
+        }));
+        checkForUpdate=true;
+    }
+    if(updateWindow) {
+        ctx.runOnUiThread(new java.lang.Runnable({
+            run: function() {
+                try {
+                    updateVersion();
+                }
+                catch(err) {
+                    clientMessage("§9[Alpha] Error: \n" + err);
+                }
+            }
+        }));
+        updateWindow=false;
+    } 
+ }
 
-function newLevel(){
-    clientMessage("\n" + ChatColor.YELLOW + "§9[Alpha] §eMod by ArceusMatt" + split + ChatColor.WHITE + NAME + " Version:" + split + version);
-    ModPE.showTipMessage(NAME + " Release " + version);
-}
+function newLevel(){ 
+ clientMessage("§9Alpha hack, §eMade by Arceus_Matt, Version: 0.13.1"); 
+
 //Sends this message in chat soon as you join a world
  
 ctx.runOnUiThread(new Runnable({ run: function(){
@@ -400,17 +431,7 @@ Server.sendChat("**§lAlpha Hack spam§r**::        SPAM SPAM SPAM SPAM SPAM SPA
 clientMessage("§lAlpha Hack spam§r**::        SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM SPAM.")
                 }
             }));
-            menuLayout.addView(spam);
-
-var B_check = new android.widget.Button(ctx);
-		B_check.setText("Check For Updates");
-       B_check.setTextColor(Color.BLUE);
-		B_check.setOnClickListener(new android.view.View.OnClickListener() {
-			onClick: function(v){
-				checkForUpdate=false;
-			}
-		});
-		menuLayout.addView(B_check); 
+            menuLayout.addView(spam); 
 
             coord = new Button(ctx);
             coord.setText("Coordinates");
@@ -558,7 +579,7 @@ function defaultDestroy(){
         Block.setDestroyTime(i, defaultDestroyTime[i]);
     }
 }
- 
+
 function modTick() {
     if(thisday) {
         Level.setTime(200);
@@ -585,3 +606,4 @@ function modTick() {
     }
 }
 //End of mod.
+}
