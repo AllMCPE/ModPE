@@ -25,7 +25,7 @@ var exitUI;
 var menuLayout;
 var addView;
  
-var version = "0.13.1 ";
+var version = "0.3.2 ";
 var NAME = "Alpha Hack";
 var DEVELOPERS = "Arceus_Matt";
  
