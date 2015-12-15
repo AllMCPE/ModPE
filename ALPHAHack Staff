@@ -1,4 +1,5 @@
-//Made by Arceus_Matt (c)Copyright 2015.
+//Made by Arceus_Matt © Copyright 2015.
+
 var ctx = com.mojang.minecraftpe.MainActivity.currentMainActivity.get();
 var Button = android.widget.Button;
 var LinearLayout = android.widget.LinearLayout;
@@ -28,7 +29,7 @@ var version = "0.13.x";
 var NAME = "Alpha Hack";
 var DEVELOPERS = "Arceus_Matt";
  
-var MARK = " ";
+var MARK = "©";
 var split = " ";
 var CODE = true;
 
@@ -185,7 +186,7 @@ function dip2px(dips){
     var r  = new java.lang.Runnable() {
         run: function() {
             try {
-                var urls= new java.net.URL("//VERSION here from github");
+                var urls= new java.net.URL("https://raw.githubusercontent.com/ArceusMatt/ModPE/master/version");
                 var check = urls.openConnection();
                 check.setRequestMethod("GET");
                 check.setDoOutput(true);
@@ -236,7 +237,7 @@ function updateVersion() {
                 var ru  = new java.lang.Runnable() {
                     run: function() {
                         try {
-                            var urls = new java.net.URL("//staff - code from github");
+                            var urls = new java.net.URL("https://raw.githubusercontent.com/ArceusMatt/ModPE/master/ALPHAHack%20Staff");
                             var check = urls.openConnection();
                             check.setRequestMethod("GET");
                             check.setDoOutput(true);
@@ -283,7 +284,7 @@ function updateVersion() {
 }
 
 function newLevel(){
-    clientMessage("\n" + ChatColor.YELLOW + "Mod by arceus_matt" + split + ChatColor.WHITE + NAME + " Version:" + split + version);
+    clientMessage("\n" + ChatColor.YELLOW + "§9[Alpha] §eMod by ArceusMatt" + split + ChatColor.WHITE + NAME + " Version:" + split + version);
     ModPE.showTipMessage(NAME + " Release " + version);
 }
 //Sends this message in chat soon as you join a world
