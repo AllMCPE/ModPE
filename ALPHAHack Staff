@@ -316,7 +316,7 @@ function updateVersion() {
  }
 
 function newLevel(){ 
- clientMessage("§9Alpha hack, §eMade by Arceus_Matt, Version: 0.3.3");
+ clientMessage("§9Alpha hack, §eMade by Arceus_Matt, Version: 0.3.2");
  clientMessage("§8Minecraft PE Version:§f0.13.x");
 
 //Sends this message in chat soon as you join a world
