@@ -434,6 +434,16 @@ clientMessage("§lAlpha Hack spam§r**::        SPAM SPAM SPAM SPAM SPAM SPAM SP
             }));
             menuLayout.addView(spam); 
 
+var B_check = new android.widget.Button(ctx);
+		B_check.setText("Check For Updates(Join a world!)");
+       B_check.setTextColor(Color.BLUE);
+		B_check.setOnClickListener(new android.view.View.OnClickListener() {
+			onClick: function(v){
+				checkForUpdate=false;
+			}
+		});
+		menuLayout.addView(B_check);
+
             coord = new Button(ctx);
             coord.setText("Coordinates");
             coord.setTextColor(Color.BLUE);
